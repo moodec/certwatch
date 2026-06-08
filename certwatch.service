@@ -1,0 +1,19 @@
+[Unit]
+Description=certwatch — CT log monitor for new subdomains
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+EnvironmentFile=/etc/certwatch/env
+ExecStart=/home/pi/certwatch/.venv/bin/certwatch run \
+  --config /home/pi/certwatch/examples/airbnb.toml \
+  --format text \
+  --output /var/log/certwatch/matches.log
+Restart=on-failure
+RestartSec=15
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
