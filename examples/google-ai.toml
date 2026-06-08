@@ -1,0 +1,48 @@
+# certwatch example config — Google AI product launch monitoring.
+#
+# Source: directly polls RFC 6962 Certificate Transparency logs.
+# To get the current usable log list, run:  certwatch logs --operator Google
+# and paste the resulting [[logs]] blocks below.
+
+[[logs]]
+name = "argon2026h1"
+url = "https://ct.googleapis.com/logs/us1/argon2026h1/"
+
+[[logs]]
+name = "xenon2026h1"
+url = "https://ct.googleapis.com/logs/eu1/xenon2026h1/"
+
+# Optional: Discord webhook notifications.
+# Webhook URLs are bearer tokens — keep them out of source control.
+# Prefer setting the env var and referencing it via webhook_url_env:
+#
+#   export CERTWATCH_DISCORD_WEBHOOK="https://discord.com/api/webhooks/..."
+#
+# [notify.discord]
+# webhook_url_env = "CERTWATCH_DISCORD_WEBHOOK"
+# batch_window_seconds = 5    # collect matches up to N seconds before posting
+# batch_max = 10              # ...or up to N matches, whichever first
+# # rules = ["google-ai-products"]   # optional rule filter; default = all rules
+
+[[rules]]
+name = "google-ai-products"
+tags = ["google", "ai"]
+# fnmatch glob patterns. Matched against each SAN/CN, case-insensitive.
+patterns = [
+    "*gemini*",
+    "*aistudio*",
+    "*notebooklm*",
+    "*vertex*",
+    "*-palm-*",
+    "*-bard-*",
+    "mariner*",
+    "jules*",
+    "veo*",
+    "imagen*",
+    "*labs.google",
+    "*.withgoogle.com",
+]
+exclude = [
+    "*staging*",
+    "*test*",
+]

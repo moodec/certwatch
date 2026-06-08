@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environment
+.venv/
+
+# Claude Code session data
+.claude/
+
+# Runtime outputs
+seen_domains.txt
+*.jsonl
