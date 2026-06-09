@@ -18,7 +18,7 @@ class SeenDomains:
         self._load()
 
     def _load(self) -> None:
-        if not self._path.exists():
+        if not self._path.is_file():
             return
         self._seen = {
             line
