@@ -5,10 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=pi
+User=ncerne
 EnvironmentFile=/etc/certwatch/env
-ExecStart=/home/pi/certwatch/.venv/bin/certwatch run \
-  --config /home/pi/certwatch/examples/airbnb.toml \
+ExecStart=/home/ncerne/Tools/certwatch/.venv/bin/certwatch run \
+  --config /home/ncerne/Tools/certwatch/examples/airbnb.toml \
   --format text \
   --output /var/log/certwatch/matches.log
 Restart=on-failure
