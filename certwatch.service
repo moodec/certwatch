@@ -8,7 +8,7 @@ Type=simple
 User=ncerne
 EnvironmentFile=/etc/certwatch/env
 ExecStart=/home/ncerne/Tools/certwatch/.venv/bin/certwatch run \
-  --config /home/ncerne/Tools/certwatch/examples/airbnb.toml \
+  --config /home/ncerne/Tools/certwatch/examples/rules.toml \
   --format text \
   --output /var/log/certwatch/matches.log
 Restart=on-failure

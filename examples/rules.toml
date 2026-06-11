@@ -1,0 +1,86 @@
+# certwatch config — all bug bounty scopes
+[[logs]]
+name = "argon2026h1"
+url = "https://ct.googleapis.com/logs/us1/argon2026h1/"
+
+[[logs]]
+name = "xenon2026h1"
+url = "https://ct.googleapis.com/logs/eu1/xenon2026h1/"
+
+[notify.discord]
+webhook_url_env = "CERTWATCH_DISCORD_WEBHOOK"
+batch_window_seconds = 5
+batch_max = 10
+
+# ── Airbnb ────────────────────────────────────────────────────────────────────
+# In-scope domains from HackerOne structured_scopes (bounty-eligible only).
+
+[[rules]]
+name = "airbnb-core"
+tags = ["airbnb", "bounty"]
+patterns = [
+  "*.airbnb.com",
+  "airbnb.com",
+]
+
+[[rules]]
+name = "airbnb-adjacent"
+tags = ["airbnb", "bounty"]
+patterns = [
+  "*.muscache.com",
+  "muscache.com",
+  "*.airbnbcitizen.com",
+  "airbnbcitizen.com",
+  "*.atairbnb.com",
+  "*.withairbnb.com",
+  "*.byairbnb.com",
+  "*.airbnb-aws.com",
+  "*.airbnb.org",
+  "airbnb.org",
+  "*.airbnbpayments.com",
+  "airbnbpayments.com",
+  "*.musta.ch",
+  "musta.ch",
+]
+
+[[rules]]
+name = "airbnb-acquisitions"
+tags = ["airbnb", "bounty", "acquisition"]
+patterns = [
+  "*.luxuryretreats.com",
+  "luxuryretreats.com",
+  "*.hoteltonight.com",
+  "www.hoteltonight.com",
+  "hoteltonight.com",
+  "*.hoteltonight-test.com",
+]
+
+# ── Yahoo ─────────────────────────────────────────────────────────────────────
+# In-scope domains from Intigriti: https://app.intigriti.com/programs/yahoo/yahoobugbounty/detail
+# Out-of-scope TLDs (*.yahoo.net, *.yahooinc.com, *.vdms.com,
+#   *.verizondigitalmedia.com, *.yahoo.com.tw, *.yahoo.com.hk) are separate
+#   domains and won't match these patterns.
+
+[[rules]]
+name = "yahoo-core"
+tags = ["yahoo", "bounty"]
+patterns = [
+  "yahoo.com",
+  "*.yahoo.com",
+]
+
+[[rules]]
+name = "yahoo-yimg"
+tags = ["yahoo", "bounty", "cdn"]
+patterns = [
+  "yimg.com",
+  "*.yimg.com",
+]
+
+[[rules]]
+name = "yahoo-ensemble-omega"
+tags = ["yahoo", "bounty", "internal"]
+patterns = [
+  "*ensemble*.yahoo.com",
+  "*omega*.yahoo.com",
+]
