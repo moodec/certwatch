@@ -1,0 +1,19 @@
+[Unit]
+Description=certwatch — CT log monitor for Yahoo bug bounty domains
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ncerne
+EnvironmentFile=/etc/certwatch/env
+ExecStart=/home/ncerne/Tools/certwatch/.venv/bin/certwatch run \
+  --config /home/ncerne/Tools/certwatch/examples/yahoo.toml \
+  --format text \
+  --output /var/log/certwatch/yahoo-matches.log
+Restart=on-failure
+RestartSec=15
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

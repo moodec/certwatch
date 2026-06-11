@@ -1,0 +1,40 @@
+# certwatch config — Yahoo bug bounty scope
+# In-scope domains from Intigriti: https://app.intigriti.com/programs/yahoo/yahoobugbounty/detail
+# Out-of-scope (*.yahoo.net, *.yahooinc.com, *.vdms.com, *.verizondigitalmedia.com,
+#   *.yahoo.com.tw, *.yahoo.com.hk) are separate TLDs/domains and won't match these patterns.
+[[logs]]
+name = "argon2026h1"
+url = "https://ct.googleapis.com/logs/us1/argon2026h1/"
+
+[[logs]]
+name = "xenon2026h1"
+url = "https://ct.googleapis.com/logs/eu1/xenon2026h1/"
+
+[notify.discord]
+webhook_url_env = "CERTWATCH_DISCORD_WEBHOOK"
+batch_window_seconds = 5
+batch_max = 10
+
+[[rules]]
+name = "yahoo-core"
+tags = ["yahoo", "bounty"]
+patterns = [
+  "yahoo.com",
+  "*.yahoo.com",
+]
+
+[[rules]]
+name = "yahoo-yimg"
+tags = ["yahoo", "bounty", "cdn"]
+patterns = [
+  "yimg.com",
+  "*.yimg.com",
+]
+
+[[rules]]
+name = "yahoo-ensemble-omega"
+tags = ["yahoo", "bounty", "internal"]
+patterns = [
+  "*ensemble*.yahoo.com",
+  "*omega*.yahoo.com",
+]
