@@ -6,6 +6,7 @@ set -euo pipefail
 RESULTS_DIR="/tmp/subfinder_results"
 SEEN_DB="${HOME}/.local/share/certwatch/seen_domains.txt"
 CERTWATCH_DIR="$(cd "$(dirname "$0")" && pwd)"
+CERTWATCH="${CERTWATCH_DIR}/.venv/bin/certwatch"
 
 mkdir -p "$RESULTS_DIR"
 
@@ -34,4 +35,4 @@ done
 
 echo ""
 echo "[*] Seeding certwatch with all results (including existing airbnb.com file)..."
-cat "${RESULTS_DIR}"/*_subfinder | certwatch seed --seen-db "$SEEN_DB"
+cat "${RESULTS_DIR}"/*_subfinder | "$CERTWATCH" seed --seen-db "$SEEN_DB"
